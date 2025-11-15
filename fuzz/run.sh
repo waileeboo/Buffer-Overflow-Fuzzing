@@ -1,4 +1,5 @@
 #!/bin/bash
 
 docker build -t sshs_asg1 -f Dockerfile .
-docker run -v .:/workspace -it sshs_asg1
+docker run -v .:/workspace -it sshs_asg1 \
+    afl-fuzz -i in -o out -- ./js @@
