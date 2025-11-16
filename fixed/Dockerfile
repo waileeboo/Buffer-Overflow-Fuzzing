@@ -8,7 +8,6 @@ COPY js.c /target
 # TODO: Complete this Dockerfile.
 # Carry out all necessary steps to apply and demonstrate
 # the efficacy of your patch.
-COPY fixed-js.c /target
 COPY js.patch /target
 COPY crash_000000 /target
 

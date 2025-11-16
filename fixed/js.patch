@@ -1,6 +1,6 @@
 --- js.c	2025-11-05 16:55:43.307576100 +0000
-+++ fixed-js.c	2025-11-15 22:33:57.878319000 +0000
-@@ -145,7 +145,7 @@
++++ fixed-js.c	2025-11-16 18:46:34.119894300 +0000
+@@ -145,14 +145,15 @@
      if (current.type == TOKEN_LET) {
          next_token();
          if (current.type != TOKEN_ID) { printf("Expected identifier\n"); exit(1); }
@@ -9,3 +9,12 @@
          next_token();
          if (current.type != TOKEN_ASSIGN) { printf("Expected '='\n"); exit(1); }
          next_token();
+         double val = parse_expr();
+         if (current.type == TOKEN_SEMI) next_token();
+         vars[var_count++] = (Var){ .value = val };
+-        strcpy(vars[var_count - 1].name, name);
++        strncpy(vars[var_count - 1].name, name, sizeof(vars[var_count - 1].name) - 1);
++        vars[var_count - 1].name[sizeof(vars[var_count - 1].name) - 1] = '\0';
+     } else {
+         double val = parse_expr();
+         if (current.type == TOKEN_SEMI) next_token();
